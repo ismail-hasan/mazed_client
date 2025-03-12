@@ -1,17 +1,41 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../AuthProviders/AuthProvider';
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOutUser } = useContext(AuthContext)
+    const navigate = useNavigate();
     const link = <>
 
-        <li><NavLink>Home</NavLink></li>
-        <li><NavLink>Home</NavLink></li>
-        <li><NavLink>Home</NavLink></li>
-        {/* <li><NavLink>{ user.name }</NavLink></li> */}
+        <li><NavLink to={"/"}>Home</NavLink></li>
+        <li><NavLink>Bike</NavLink></li>
+        <li><NavLink>Bi Cycle</NavLink></li>
+        {
+            user?.email &&
+            <>
+                <li><NavLink>Add Bike</NavLink></li>
+                <li><NavLink>My Bike</NavLink></li>
+            </>
 
+        }
+
+        <li><NavLink>{user?.email}</NavLink></li>
     </>
+
+
+
+    const logOut = () => {
+        logOutUser()
+            .then(() => {
+                console.log("User signed out successfully");
+                navigate("/login"); // Redirect to login page after sign out
+            })
+            .catch((error) => {
+                console.error("Error signing out: ", error.message);
+            });
+    }
+
+
 
     return (
         <div>
@@ -36,8 +60,17 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end ">
-                    <Link to={'/login'} className="btn mr-4">Log In</Link>
-                    <Link to={'/signup'} className="btn">Sign Up</Link>
+
+                    {
+                        user?.email ?
+                            <Link onClick={logOut} className="btn mr-4">Log Out</Link>
+                            :
+                            <>
+                                <Link to={'/login'} className="btn mr-4">Log In</Link>
+                                <Link to={'/signup'} className="btn">Sign Up</Link>
+                            </>
+                    }
+
                 </div>
             </div>
         </div>
