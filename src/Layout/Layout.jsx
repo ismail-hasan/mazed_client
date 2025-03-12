@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../Shared/Navbar';
+import Footer from '../Shared/Footer';
 
 const Layout = () => {
     return (
@@ -12,12 +13,18 @@ const Layout = () => {
             </header>
 
 
-            <main className='w-11/12 mx-auto'>
+            <main className=''>
                 <Outlet></Outlet>
+                <section></section>
+                <section>
+
+                </section>
             </main>
 
 
-            <footer></footer>
+            <footer>
+                <Footer></Footer>
+            </footer>
 
         </div>
     );

@@ -15,7 +15,7 @@ const Navbar = () => {
             user?.email &&
             <>
                 <li><NavLink to={'addbike'}>Add Bike</NavLink></li>
-                <li><NavLink>My Bike</NavLink></li>
+                <li><NavLink to={"mybike"}>My Bike</NavLink></li>
             </>
 
         }

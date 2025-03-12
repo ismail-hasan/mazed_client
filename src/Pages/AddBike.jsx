@@ -18,7 +18,7 @@ const AddBike = () => {
         const bikeInfo = { name, price, image, description, location, ridekm }
         console.log(bikeInfo)
 
-        fetch('http://localhost:3000/addbike', {
+        fetch('http://localhost:3000/bikes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json', // Corrected the content-type

@@ -4,6 +4,9 @@ import HomePage from "../Pages/HomePage";
 import LoginPaege from "../Pages/LoginPaege";
 import SignUp from "../Pages/SignUp";
 import AddBike from "../Pages/AddBike";
+import MyBike from "../Pages/MyBike";
+import MainHome from "../Pages/MainHome";
+import BikeDetails from "../Pages/BikeDetails";
 
 const router = createBrowserRouter([
     {
@@ -13,7 +16,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <HomePage></HomePage>
+                element: <MainHome></MainHome>
             },
             {
                 path: "/login",
@@ -26,6 +29,16 @@ const router = createBrowserRouter([
             {
                 path: "/addbike",
                 element: <AddBike></AddBike>
+            },
+            {
+                path: "/mybike",
+                element: <MyBike></MyBike>,
+                loader: () => fetch("http://localhost:3000/bikes")
+            },
+            {
+                path: "/bike/:id",
+                element: <BikeDetails></BikeDetails>,
+                loader: ({ params }) => fetch(`http://localhost:3000/bikes/${params.id}`)
             },
         ]
     }
