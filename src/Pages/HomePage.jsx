@@ -20,7 +20,7 @@ const HomePage = () => {
                 {/* Image Section */}
                 <div className="md:w-1/2 flex justify-center md:justify-end">
                     <img
-                        src="https://cdn.pixabay.com/photo/2016/12/27/13/10/logo-1933884_640.png" // Replace with your image URL
+                        src="https://cdn.bikedekho.com/processedimages/yamaha/mt-15-2-0/source/mt-15-2-06613f885e681c.jpg" // Replace with your image URL
                         alt="Electric Scooter"
                         className="rounded-lg shadow-2xl transform transition duration-500 hover:scale-105"
                     />

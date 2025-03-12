@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import { AuthContext } from "../AuthProviders/AuthProvider";
 
 const AddBike = () => {
     const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
 
     const addBikeHandle = (e) => {
         e.preventDefault()
@@ -12,10 +14,12 @@ const AddBike = () => {
         const price = form.get('price')
         const image = form.get('image')
         const description = form.get('description')
+        const category = form.get('category')
         const location = form.get('location')
         const ridekm = form.get('rideKm')
+        const email = user?.email
 
-        const bikeInfo = { name, price, image, description, location, ridekm }
+        const bikeInfo = { name, price, image, description, category, location, ridekm, email }
         console.log(bikeInfo)
 
         fetch('http://localhost:3000/bikes', {
@@ -107,18 +111,30 @@ const AddBike = () => {
                             className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"
                         />
                     </div>
-
-                    {/* Description */}
+                    {/* Ride KM */}
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
-                            Description
+                            Ride KM
                         </label>
-                        <textarea
-                            name="description"
-                            placeholder="Enter bike description"
+                        <input
+                            type="number"
+                            name="rideKm"
+                            placeholder="Enter ride kilometers"
                             className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"
                         />
                     </div>
+                    {/* category */}
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                            Select category
+                        </label>
+                        <select name="category" defaultValue="Server location" className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500">
+                            <option disabled={true}>Select category</option>
+                            <option value={'bike'}>Bike</option>
+                            <option value={'bicycle'}>Bi-Cycle</option>
+                        </select>
+                    </div>
+
 
                     {/* Location */}
                     <div className="mb-4">
@@ -133,15 +149,15 @@ const AddBike = () => {
                         />
                     </div>
 
-                    {/* Ride KM */}
+
+                    {/* Description */}
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
-                            Ride KM
+                            Description
                         </label>
-                        <input
-                            type="number"
-                            name="rideKm"
-                            placeholder="Enter ride kilometers"
+                        <textarea
+                            name="description"
+                            placeholder="Enter bike description"
                             className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"
                         />
                     </div>

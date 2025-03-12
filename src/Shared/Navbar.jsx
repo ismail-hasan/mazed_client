@@ -10,7 +10,6 @@ const Navbar = () => {
 
         <li><NavLink to={"/"}>Home</NavLink></li>
         <li><NavLink>Bike</NavLink></li>
-        <li><NavLink>Bi Cycle</NavLink></li>
         {
             user?.email &&
             <>
