@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-.active{
+.actie{
    background-color: black;
    color: yellow;
 }

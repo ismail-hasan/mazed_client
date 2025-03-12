@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../AuthProviders/AuthProvider';
+import '../app.css'
 
 const Navbar = () => {
     const { user, logOutUser } = useContext(AuthContext)
@@ -13,7 +14,7 @@ const Navbar = () => {
         {
             user?.email &&
             <>
-                <li><NavLink>Add Bike</NavLink></li>
+                <li><NavLink to={'addbike'}>Add Bike</NavLink></li>
                 <li><NavLink>My Bike</NavLink></li>
             </>
 
