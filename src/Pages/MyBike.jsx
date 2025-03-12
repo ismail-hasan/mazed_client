@@ -23,35 +23,30 @@ const MyBike = () => {
 
     const handleDelte = id => {
         console.log("id", id)
-        axios.delete(`http://localhost:3000/bikes/${id}`)
-            .then(res => {
 
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                     if (res.data.deletedCount) {
-                    Swal.fire({
-                        title: "Delete Success!",
-                        icon: "success",
-                        draggable: true
-                    });
-
-                    const remaingBike = bikes.filter(remaing => remaing._id !== id)
-                    setBikes(remaingBike)
-                }
-                console.log(res.data)
-                });
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:3000/bikes/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount) {
+                            const remaingBike = bikes.filter(remaing => remaing._id !== id)
+                            setBikes(remaingBike)
+                        }
+                        console.log(res.data)
+                    })
+            }
+        });
 
 
 
-               
-            })
 
         // fetch(`http://localhost:3000/bikes/${id}`, {
         //     method: 'DELETE'
