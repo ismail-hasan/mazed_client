@@ -34,10 +34,10 @@ const Bikes = () => {
                                 <p className="text-xl text-gray-500 mt-2">Price: {bike.price} <i className='text-sm'>BDT</i></p>
                                 <div style={{ color: 'oklch(0.546 0.245 262.881)' }} className="badge badge-outline badge-info text-sm">{bike.category}</div>
                             </div>
-                            <p className="text-gray-700 mt-4">{bike.description}</p>
+                            <p className="text-gray-700 text-justify mt-4">{bike.description.slice(0, 200)}</p>
                             <div className="flex justify-between items-center mt-4">
                                 <span className="text-gray-600">{bike.location}</span>
-                                <span className="text-gray-600 italic">
+                                <span className="text-gray-600 italic mb-1">
                                     {bike.ridekm} <span className='text-blue-600 italic'>
                                         km ridden
                                     </span>
