@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
 
-        <footer className="bg-[oklch(0.19_0.01_0)] text-white py-12 px-6">
+        <div className="bg-[oklch(0.19_0.01_0)] text-white pt-12">
             <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
                 {/* ACME Industries Section */}
                 <aside className="flex flex-col items-center text-center">
@@ -30,37 +30,37 @@ const Footer = () => {
 
                 {/* Services Section */}
                 <nav className="flex flex-col items-center text-center">
-                    <h6 className="footer-title text-lg font-semibold mb-3 text-yellow-300">Services</h6>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Branding</a>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Design</a>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Marketing</a>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Advertisement</a>
+                    <h6 className="uppercase text-lg font-semibold mb-3 text-[#00ffec]">Services</h6>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Branding</a>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Design</a>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Marketing</a>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Advertisement</a>
                 </nav>
 
                 {/* Company Section */}
                 <nav className="flex flex-col items-center text-center">
-                    <h6 className="footer-title text-lg font-semibold mb-3 text-yellow-300">Company</h6>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">About us</a>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Contact</a>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Jobs</a>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Press kit</a>
+                    <h6 className="uppercase text-lg font-semibold mb-3 text-[#00ffec]">Company</h6>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">About us</a>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Contact</a>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Jobs</a>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Press kit</a>
                 </nav>
 
                 {/* Legal Section */}
                 <nav className="flex flex-col items-center text-center">
-                    <h6 className="footer-title text-lg font-semibold mb-3 text-yellow-300">Legal</h6>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Terms of use</a>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Privacy policy</a>
-                    <a className="link link-hover mb-2 hover:text-yellow-500 transition duration-300">Cookie policy</a>
+                    <h6 className="uppercase text-lg font-semibold mb-3 text-[#00ffec]">Legal</h6>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Terms of use</a>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Privacy policy</a>
+                    <a className="link link-hover mb-2 hover:text-[#00ffec] transition duration-300">Cookie policy</a>
                 </nav>
             </div>
 
-            <div className="text-center mt-8">
-                <p className="text-sm">
-                    © 2025 ACME Industries. All rights reserved.
-                </p>
+
+            <div className="bg-gray-800 mt-8 text-sm text-white py-4 text-center">
+                <p>© 2025 Bike Bazar. All rights reserved. Crafted with 💙 by <span className="text-blue-400 font-semibold">Ismail Hasan</span></p>
             </div>
-        </footer>
+
+        </div>
 
 
     );

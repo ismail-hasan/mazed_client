@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 // import auth from '../FireBase/FireBase.init';
 import { auth } from "../FireBase/FireBase.init"
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+const provider = new GoogleAuthProvider();
 
 // Create the AuthContext
 export const AuthContext = createContext();
@@ -15,6 +16,10 @@ const AuthProvider = ({ children }) => {
     }
     const logInUser = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    const googleLogin = () => {
+        return signInWithPopup(auth, provider)
     }
 
     const logOutUser = () => {
@@ -41,7 +46,8 @@ const AuthProvider = ({ children }) => {
         setUser,
         signUpUser,
         logInUser,
-        logOutUser
+        logOutUser,
+        googleLogin
     }
     return (
         <AuthContext.Provider value={contextInfo}>

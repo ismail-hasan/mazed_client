@@ -31,13 +31,17 @@ const Bikes = () => {
                         <div className="p-4">
                             <h3 className="text-2xl font-semibold text-gray-800">{bike.name}</h3>
                             <div className='flex justify-between items-center'>
-                                <p className="text-xl text-gray-500 mt-2">Price: {bike.price} BDT</p>
-                                <div className="badge text-sm badge-outline badge-primary">{bike.category}</div>
+                                <p className="text-xl text-gray-500 mt-2">Price: {bike.price} <i className='text-sm'>BDT</i></p>
+                                <div style={{ color: 'oklch(0.546 0.245 262.881)' }} className="badge badge-outline badge-info text-sm">{bike.category}</div>
                             </div>
                             <p className="text-gray-700 mt-4">{bike.description}</p>
                             <div className="flex justify-between items-center mt-4">
                                 <span className="text-gray-600">{bike.location}</span>
-                                <span className="text-gray-600">{bike.ridekm} km ridden</span>
+                                <span className="text-gray-600 italic">
+                                    {bike.ridekm} <span className='text-blue-600 italic'>
+                                        km ridden
+                                    </span>
+                                </span>
                             </div>
                         </div>
                     </Link>

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../AuthProviders/AuthProvider";
 
 const SignUp = () => {
-    const { signUpUser } = useContext(AuthContext)
+    const { signUpUser, googleLogin } = useContext(AuthContext)
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -34,11 +34,28 @@ const SignUp = () => {
                 console.log(errorCode, errorMessage);
             });
 
-
-
-
-
     }
+
+    const googleBtn = () => {
+        googleLogin()
+            .then(result => {
+                const user = result.user;
+                if (user) {
+                    console.log(result)
+                    navigate('/')
+                }
+                else {
+                    console.log("lgoin error")
+                }
+            })
+            .err(err => {
+                console.log(err)
+            })
+    }
+
+
+
+
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
@@ -83,7 +100,7 @@ const SignUp = () => {
                     <p className="mx-3 text-gray-500">Or</p>
                     <div className="border-t w-full border-gray-300"></div>
                 </div>
-                <button
+                <button onClick={googleBtn}
                     className="w-full flex items-center justify-center bg-white border border-gray-300 text-gray-700 py-2 mt-4 rounded-xl hover:bg-gray-100 transition-colors">
                     <FcGoogle className="mr-3 text-xl" />
                     Sign Up with Google

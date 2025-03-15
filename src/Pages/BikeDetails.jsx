@@ -5,6 +5,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../AuthProviders/AuthProvider';
 import SingleCatagory from '../Components/SingleCatagory';
+import Comment from '../Components/Comment';
 
 
 
@@ -69,7 +70,7 @@ const BikeDetails = () => {
                             </div>
                         </div>
                         <div className="flex justify-between items-center mt-4">
-                            <span className="text-2xl font-bold text-blue-500">Price: {bike.price} BDT</span>
+                            <span className="text-2xl font-bold text-blue-500">Price: {bike.price} <i className='text-sm'>BDT</i> </span>
                             <button className="bg-blue-500 text-white py-2 px-6 rounded-full  hover:bg-blue-600 transition duration-300">Buy Now</button>
                         </div>
                     </div>
@@ -114,15 +115,22 @@ const BikeDetails = () => {
                 </div>
             </section>
 
-            <h4>Related Post {category.length}</h4>
-            <div className='grid grid-cols-4 gap-10 py-10'>
-                {
-                    category.map(singleCategory => <SingleCatagory
-                        key={singleCategory._id}
-                        singleCategory={singleCategory}
-                    ></SingleCatagory>)
-                }
-            </div>
+            <section>
+                <h4>Related Post {category.length}</h4>
+                <div className='grid grid-cols-4 gap-10 py-10'>
+                    {
+                        category.map(singleCategory => <SingleCatagory
+                            key={singleCategory._id}
+                            singleCategory={singleCategory}
+                        ></SingleCatagory>)
+                    }
+                </div>
+            </section>
+            <section>
+                <Comment></Comment>
+            </section>
+
+
 
         </div>
     );
