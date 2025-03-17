@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router";
+import React, { useContext, useState } from "react";
+import { Form, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../AuthProviders/AuthProvider";
 
 const AddBike = () => {
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
+    // const [imgURL, setImageURL] = useState('')
+
+    // console.log('curren image is', imgURL)
 
     const addBikeHandle = (e) => {
         e.preventDefault()
@@ -19,36 +22,79 @@ const AddBike = () => {
         const ridekm = form.get('rideKm')
         const email = user?.email
 
-        const bikeInfo = { name, price, image, description, category, location, ridekm, email }
-        console.log(bikeInfo)
 
-        fetch('http://localhost:3000/bikes', {
+        const newImage = new FormData()
+        newImage.append("image", image)
+
+        fetch('https://api.imgbb.com/1/upload?key=c6ad6b5e3ae6169a78df6d4d45efd952', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json', // Corrected the content-type
-            },
-            body: JSON.stringify(bikeInfo) // Correctly stringifying the bikeInfo object
+            body: newImage
         })
-            .then(res => res.json())  // Parse the JSON response
+            .then(res => res.json())
             .then(data => {
-                if (data.insertedId) {
-                    Swal.fire({
-                        title: "Drag me!",
-                        icon: "success",
-                        draggable: true
-                    });
-                    navigate('/')
-
-                    console.log(data);
+                const imageData = data.data.url
+                // setImageURL(imageData)
+                console.log("submit", imageData)
+                const bikeInfo = {
+                    name, price,
+                    image: data.data.url,
+                    description, category, location, ridekm, email
                 }
+                console.log(bikeInfo)
+                fetch('https://code.bikerp.com/bikes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bikeInfo)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            Swal.fire({
+                                title: "Drag me!",
+                                icon: "success",
+                                draggable: true
+                            });
+                            navigate('/')
+
+                            console.log(data);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
             })
-            .catch(error => {
-                console.error('Error:', error); // Handle any errors
-            });
+
+
+        // fetch('https://code.bikerp.com/bikes', {
+        //     method: '',
+        //     headers: {
+        //         'Content-Type': 'application/json', // Corrected the content-type
+        //     },
+        //     body: JSON.stringify(bikeInfo) // Correctly stringifying the bikeInfo object
+        // })
+        //     .then(res => res.json())  // Parse the JSON response
+        //     .then(data => {
+        //         if (data.insertedId) {
+        //             Swal.fire({
+        //                 title: "Drag me!",
+        //                 icon: "success",
+        //                 draggable: true
+        //             });
+        //             navigate('/')
+
+        //             console.log(data);
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error); // Handle any errors
+        //     });
 
 
         // fetch data mongodb 
-        //     fetch('http://localhost:3000/addbike', {
+        //     fetch('https://code.bikerp.com/addbike', {
         //         method: 'POST',
         //         headers: {
         //             'content-type': 'application/json'
@@ -65,6 +111,7 @@ const AddBike = () => {
         // }
 
     }
+
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 py-4">
@@ -105,7 +152,7 @@ const AddBike = () => {
                             Bike Image URL
                         </label>
                         <input
-                            type="text"
+                            type="file"
                             name="image"
                             placeholder="Enter image URL"
                             className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"

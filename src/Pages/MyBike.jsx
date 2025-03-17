@@ -12,7 +12,7 @@ const MyBike = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/bikes?email=${user?.email}`)
+        axios.get(`https://code.bikerp.com/bikes?email=${user?.email}`)
             .then(res => {
                 setBikes(res.data)
                 console.log(res.data)
@@ -34,7 +34,7 @@ const MyBike = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:3000/bikes/${id}`)
+                axios.delete(`https://code.bikerp.com/bikes/${id}`)
                     .then(res => {
                         if (res.data.deletedCount) {
                             const remaingBike = bikes.filter(remaing => remaing._id !== id)
@@ -48,7 +48,7 @@ const MyBike = () => {
 
 
 
-        // fetch(`http://localhost:3000/bikes/${id}`, {
+        // fetch(`https://code.bikerp.com/bikes/${id}`, {
         //     method: 'DELETE'
         // })
         //     .then(res => res.json())

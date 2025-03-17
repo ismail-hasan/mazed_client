@@ -33,12 +33,12 @@ const router = createBrowserRouter([
             {
                 path: "/mybike",
                 element: <MyBike></MyBike>,
-                loader: () => fetch("http://localhost:3000/bikes")
+                loader: () => fetch("https://code.bikerp.com/bikes")
             },
             {
                 path: "/bike/:id",
                 element: <BikeDetails></BikeDetails>,
-                loader: ({ params }) => fetch(`http://localhost:3000/bikes/${params.id}`)
+                loader: ({ params }) => fetch(`https://code.bikerp.com/bikes/${params.id}`)
             },
         ]
     }
