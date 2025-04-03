@@ -7,16 +7,19 @@ import AddBike from "../Pages/AddBike";
 import MyBike from "../Pages/MyBike";
 import MainHome from "../Pages/MainHome";
 import BikeDetails from "../Pages/BikeDetails";
+import Welcome from "../Pages/Welcome";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout></Layout>,
+        // element: <Layout></Layout>,
+        element:  <Welcome></Welcome>,
         errorElement: <h5>this page not found</h5>,
         children: [
             {
                 path: "/",
                 element: <MainHome></MainHome>
+               
             },
             {
                 path: "/login",
